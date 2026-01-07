@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
-import '../services/auth_service.dart';
+import '../../core/services/auth_service.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -44,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: 50,
               backgroundColor: Colors.blue,
               child: Text(
@@ -57,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Text(
+            const Text(
               'User Demo',
               style: TextStyle(
                 fontSize: 24,
@@ -92,7 +92,7 @@ class ProfileScreen extends StatelessWidget {
       children: [
         Text(
           value,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Colors.blue,
@@ -188,9 +188,6 @@ class ProfileScreen extends StatelessWidget {
                 onPressed: () async {
                   final authService = context.read<AuthService>();
                   await authService.logout();
-                  if (context.mounted) {
-                    context.go('/login');
-                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,

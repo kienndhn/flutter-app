@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template_app/widgets/text_input_login_field.dart';
+import 'package:flutter_template_app/ui/widgets/text_input_login_field.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
-import '../services/auth_service.dart';
+import '../../core/services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -27,7 +27,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _login() async {
     if (!_formKey.currentState!.validate()) return;
-
     setState(() {
       _isLoading = true;
     });
@@ -38,10 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _emailController.text.trim(),
         _passwordController.text,
       );
-
-      if (success && mounted) {
-        context.go('/');
-      } else if (mounted) {
+      if (!success && mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content:
@@ -127,7 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 24),
                       CheckboxListTile(
                         value: _isRemember,
                         title: const Text("Ghi nhớ đăng nhập"),
@@ -169,15 +164,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        'Demo: Nhập bất kỳ email và mật khẩu hợp lệ',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),

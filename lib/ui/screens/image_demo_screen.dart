@@ -418,7 +418,7 @@ class ImageDemoScreen extends StatelessWidget {
                   size: 60,
                 ),
                 const SizedBox(width: 16),
-                CachedAvatar(
+                const CachedAvatar(
                   imageUrl: 'https://invalid-url.com/image.jpg',
                   size: 60,
                 ),
