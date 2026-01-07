@@ -4,12 +4,19 @@ import 'package:flutter_template_app/data/models/post.dart';
 class PostService {
   final _dio = HttpService().dio;
 
-  Future<List<Post>> getListPost({int maxResultCount = 10}) async {
+  Future<List<Post>> getListPost() async {
     try {
-      final response = await _dio
-          .get('', queryParameters: {"maxResultCount": maxResultCount});
-      return [];
+      print(_dio.options.baseUrl);
+      print('interceptors = ${_dio.interceptors.length}');
+      final response = await _dio.get(
+          '/social-media/api/services/app/UserPost/GetListPost',
+          queryParameters: {"maxResultCount": 10});
+      List<Post> posts =
+          response.data['result'].map((e) => Post.fromJson(e)).toList();
+      return posts;
     } catch (error) {
+      print('error: ${error}');
+
       return [];
     }
   }

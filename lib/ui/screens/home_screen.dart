@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template_app/ui/screens/list_post_screen.dart';
 import 'detail_screen.dart';
 import 'components_demo_screen.dart';
 import 'image_demo_screen.dart';
@@ -108,6 +109,16 @@ class HomeScreen extends StatelessWidget {
                   onTap: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Cài đặt')),
+                    );
+                  },
+                ),
+                _buildQuickActionCard(
+                  icon: Icons.settings,
+                  title: 'Bài viết',
+                  color: Colors.purple,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (builder) => ListPostScreen()),
                     );
                   },
                 ),
